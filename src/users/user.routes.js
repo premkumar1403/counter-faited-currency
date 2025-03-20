@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router();
 const userController = require("./user.controller");
-const userModal = require("./user.model");
+const upload=require("../middleware/multer.config")
 
 //signup route
 router.post("/signup", userController.Signup);
@@ -13,6 +13,6 @@ router.post('/login', userController.Login);
 router.get("/logout",userController.Logout)
 
 //deep learnig path
-router.post("/verify",userController.Verify)
+router.post("/verify", upload.single("file"), userController.Verify);
 
 module.exports = router;
